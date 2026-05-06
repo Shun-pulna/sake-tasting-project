@@ -584,3 +584,89 @@ ul {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 }
+
+/* ===============================
+   最新結果：賞エリアの縦ズレ修正
+   ボトルデザイン賞 / 特別賞を横並びにする
+------------------------------- */
+
+/* 念のため、特別賞の余計なズレをリセット */
+#latest #special-award-block {
+  margin-top: 0 !important;
+  margin-left: 0 !important;
+}
+
+/* PC〜タブレット幅では横並び */
+@media (min-width: 600px) {
+  #latest .ranking-sub {
+    display: inline-block;
+    width: calc(50% - 14px);
+    vertical-align: top;
+    margin-top: 0;
+  }
+
+  #latest .ranking-sub.special-award:not([hidden]) {
+    margin-left: 24px !important;
+    margin-top: 0 !important;
+  }
+
+  /* 賞カード内は1列固定 */
+  #latest .ranking-grid.ranking-grid--design {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* スマホ幅では縦並びに戻す */
+@media (max-width: 599px) {
+  #latest .ranking-sub {
+    display: block;
+    width: 100%;
+  }
+
+  #latest .ranking-sub.special-award:not([hidden]) {
+    margin-left: 0 !important;
+    margin-top: 32px !important;
+  }
+}
+
+/* ===============================
+   最新結果：賞カードの画像サイズ統一
+------------------------------- */
+
+#latest .ranking-grid--design .ranking-card {
+  display: block;
+  padding: 12px;
+  overflow: hidden;
+}
+
+#latest .ranking-grid--design .ranking-card__medal {
+  display: none;
+}
+
+#latest .ranking-grid--design .ranking-card__photo {
+  height: 320px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+#latest .ranking-grid--design .ranking-card__photo a {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#latest .ranking-grid--design .ranking-card__photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* 特別賞の瓶だけ小さく見えるので少し拡大 */
+#latest-special .ranking-card__photo img {
+  transform: scale(1.25);
+  transform-origin: center;
+}

@@ -6,6 +6,9 @@ const statusEl = document.getElementById('latest-status');
 const roundEl = document.getElementById('latest-round');
 const designEl = document.getElementById('latest-design');
 
+const specialBlockEl = document.getElementById('special-award-block');
+const specialEl = document.getElementById('latest-special');
+
 const esc = (s) =>
   String(s ?? '')
     .replace(/&/g, '&amp;')
@@ -35,7 +38,7 @@ function createRankingCard(item) {
         ${
           sakeUrl
             ? `<a href="${esc(
-                sakeUrl
+                sakeUrl,
               )}" target="_blank" rel="noopener noreferrer">
                  <img src="${esc(imgUrl)}" alt="${esc(item.name || '')}">
                </a>`
@@ -99,7 +102,7 @@ function createDesignCard(item) {
         ${
           breweryUrl
             ? `<a href="${esc(
-                breweryUrl
+                breweryUrl,
               )}" target="_blank" rel="noopener noreferrer">
                  <img src="${esc(imgUrl)}" alt="${esc(item.name || '')}">
                </a>`
@@ -143,7 +146,7 @@ async function fetchLatestResult() {
 
     const res = await fetch(
       `${window.SAKE_MASTER_API_URL}?type=latest_ranking`,
-      { cache: 'no-store' }
+      { cache: 'no-store' },
     );
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
 
@@ -180,6 +183,13 @@ async function fetchLatestResult() {
     if (designEl && data.designAward) {
       designEl.innerHTML = '';
       designEl.appendChild(createDesignCard(data.designAward));
+    }
+
+    // ★ 特別賞を描画
+    if (specialBlockEl && specialEl && data.specialAward) {
+      specialBlockEl.hidden = false;
+      specialEl.innerHTML = '';
+      specialEl.appendChild(createDesignCard(data.specialAward));
     }
   } catch (e) {
     console.error(e);

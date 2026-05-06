@@ -76,7 +76,8 @@
       <section class="section section--alt">
         <!-- Hero side panel（最新回の概要） -->
         <div>
-          <div class="l-container">
+          <div class="l-container" hidden>
+            <!-- 開催日が決まったらhiddenを解除 -->
             <header class="section__header">
               <div class="section__label">SCHEDULED To BE HELD</div>
               <h1 class="hero__title">開催予定</h1>
@@ -143,7 +144,7 @@
             <header class="section__header">
               <div class="section__label">ANNOUNCEMENT OF RESULTS</div>
               <h1 class="hero__title">
-                第<span id="latest-round">9</span>回 結果発表
+                第<span id="latest-round">10</span>回 結果発表
               </h1>
             </header>
 
@@ -160,6 +161,18 @@
               <h2 class="ranking-sub__title">ボトルデザイン賞</h2>
               <div
                 id="latest-design"
+                class="ranking-grid ranking-grid--design"
+              ></div>
+            </div>
+
+            <div
+              class="ranking-sub special-award"
+              id="special-award-block"
+              hidden
+            >
+              <h2 class="ranking-sub__title">特別賞</h2>
+              <div
+                id="latest-special"
                 class="ranking-grid ranking-grid--design"
               ></div>
             </div>
@@ -306,6 +319,19 @@
 
           <div class="archive-list">
             <article class="archive-item">
+              <a href="../sake-list/?round=10" class="archive-item__title">
+                第10回（2026年3月開催）
+              </a>
+              <div class="archive-item__meta">
+                優勝：花陽浴（はなあび）THE PREMIUM 純米大吟醸 山田錦40
+                おりがらみ生原酒 / 埼玉県<br />
+                出品数：13銘柄 <br />
+                ボトルデザイン賞：山に雲が ザアアザアア 純米大吟醸 / 高知県
+                <br />
+                特別賞：月桂冠 純米大吟醸 しぼりたて生原酒 / 京都府
+              </div>
+            </article>
+            <article class="archive-item">
               <a href="../sake-list/?round=9" class="archive-item__title">
                 第9回（2025年11月開催）
               </a>
@@ -398,6 +424,13 @@
           </header>
 
           <div class="news-list">
+            <article class="news-item">
+              <div class="news-item__meta">2026.05.06｜お知らせ</div>
+              <h3 class="news-item__title">
+                サイトを更新しました（第10回の結果）
+              </h3>
+            </article>
+
             <article class="news-item">
               <div class="news-item__meta">2026.02.04｜お知らせ</div>
               <h3 class="news-item__title">

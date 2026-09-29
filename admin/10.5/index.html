@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>管理画面｜日本酒試飲会</title>
+    <link rel="stylesheet" href="../styles/base.css" />
+    <link rel="stylesheet" href="../styles/admin.css" />
+    <script>
+      // ★ GASの /exec URL（必要に応じて差し替え）
+      window.GAS_API_URL =
+        'https://script.google.com/macros/s/AKfycbwf0Awm6FGVY6Ghsp8EhPcc9s65DQBvZVUw-_prMrDayS_hCO-MdSkF-W40kOKyVITM/exec';
+    </script>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container">
+        <h1>2026 -SUMMER- 管理画面</h1>
+        <p class="lead">ランキング・ビジュアル投票結果の確認と投票受付の切替</p>
+      </div>
+    </header>
+
+    <main class="container">
+      <!-- 投票受付 -->
+      <section class="card">
+        <div class="card-head">
+          <h2>投票受付</h2>
+          <div class="head-actions">
+            <button id="toggleBtn" class="btn">読込中...</button>
+          </div>
+        </div>
+        <p id="adminMsg" class="msg"></p>
+        <p class="meta">現在値: <strong id="voteOpenLabel">-</strong></p>
+      </section>
+
+      <!-- 平均点ランキング -->
+      <section class="card">
+        <div class="card-head">
+          <h2>ランキング（合計点）</h2>
+          <button id="refreshStatsBtn" class="btn">更新</button>
+        </div>
+        <ol id="rankList" class="ranking"></ol>
+        <p id="rankMeta" class="meta"></p>
+      </section>
+
+      <!-- ビジュアル投票 -->
+      <section class="card">
+        <div class="card-head">
+          <h2>ビジュアル投票結果（得票数）</h2>
+          <button id="refreshVisualBtn" class="btn">更新</button>
+        </div>
+        <ol id="visualList" class="ranking"></ol>
+        <p id="visualMeta" class="meta"></p>
+      </section>
+
+      <!-- 投票完了チェック -->
+      <section class="card">
+        <div class="card-head">
+          <h2>投票完了チェック</h2>
+          <button id="refreshCheckBtn" class="btn">更新</button>
+        </div>
+
+        <div class="table-wrap">
+          <table class="check-table">
+            <colgroup>
+              <col style="width: 40%" />
+              <col style="width: 30%" />
+              <col style="width: 30%" />
+            </colgroup>
+            <thead>
+              <tr>
+                <th>name</th>
+                <th>合計点投票（scores）</th>
+                <th>ビジュアル投票（visual_votes）</th>
+              </tr>
+            </thead>
+            <tbody id="voteCheckBody"></tbody>
+          </table>
+        </div>
+
+        <p id="checkMeta" class="meta"></p>
+      </section>
+    </main>
+    <footer class="site-footer">
+      <div class="container"><small>© 日本酒試飲会</small></div>
+    </footer>
+
+    <script src="./admin.js" defer></script>
+  </body>
+</html>

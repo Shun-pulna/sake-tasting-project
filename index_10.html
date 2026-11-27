@@ -1,0 +1,490 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <title>
+      みんなで決めよう！本当に美味しいお酒はこれだ！｜公式サイト（仮）
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="半年に一度開催される日本酒試飲会『みんなで決めよう！本当に美味しいお酒はこれだ！』の公式サイト。最新回の結果発表、出品酒一覧、過去の順位、投票ページなど。"
+    />
+    <!-- 外部CSS -->
+    <link rel="stylesheet" href="./styles/top.css" />
+
+    <script>
+      window.SAKE_MASTER_API_URL =
+        'https://script.google.com/macros/s/AKfycbxyhymnK7lR08UKkvtI-wYfQbIPBrRj6wNx-fX9t95z4U-wvKSvFiz3kI_SPVmjh-pUWA/exec';
+    </script>
+
+    <!-- ★ 追加：最新結果を描画するJS -->
+    <script src="./scripts/latest-result.js" defer></script>
+  </head>
+  <body>
+    <!-- =========================
+       Header
+  ========================== -->
+    <header class="site-header">
+      <div class="l-container site-header__inner">
+        <a href="#" class="site-header__logo">
+          <span class="site-header__logo-mark">
+            <img src="images/logo.png" alt="サイトロゴ" />
+          </span>
+          <span>みんなで決めよう！ホントに美味しいお酒はこれだ！全国大会</span>
+        </a>
+
+        <nav class="site-header__nav" aria-label="メインナビゲーション">
+          <ul class="site-header__nav-list">
+            <li>
+              <a href="#latest" class="site-header__nav-link">最新回の結果</a>
+            </li>
+            <li>
+              <a href="#vote" class="site-header__nav-link">投票ページ</a>
+            </li>
+            <li>
+              <a href="#sake-list" class="site-header__nav-link">出品酒一覧</a>
+            </li>
+            <li>
+              <a href="#archive" class="site-header__nav-link">過去の結果</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- =========================
+       Hero
+  ========================== -->
+    <main>
+      <section class="hero">
+        <!-- <div class="l-container hero__inner"> -->
+        <!-- Hero text -->
+        <div class="l-container">
+          <header class="section__header">
+            <div class="hero__title-main">OFFICIAL TASTING EVENT</div>
+            <p class="hero__subtitle">
+              全国から集まった日本酒を、参加者全員の投票でランキング。<br />
+              このサイトでは、最新回の結果・出品酒一覧・過去の順位までまとめてチェックできます。
+            </p>
+          </header>
+        </div>
+      </section>
+      <!-- =========================
+       Hero
+      ========================== -->
+      <section class="section section--alt">
+        <!-- Hero side panel（最新回の概要） -->
+        <div>
+          <div class="l-container">
+            <!-- 開催日が決まったらhiddenを解除 -->
+            <header class="section__header">
+              <div class="section__label">SCHEDULED To BE HELD</div>
+              <h1 class="hero__title">開催予定</h1>
+            </header>
+            <aside class="hero__panel">
+              <div class="hero__panel-title">
+                第11回 みんなで決めよう！ホントに美味しいお酒はこれだ！全国大会
+              </div>
+              <div class="hero__panel-meta">
+                開催日：2026年11月5日<br />
+                時間：19時00分～<br />
+                会場：新宿オイスターズインク<br />
+                　牡蠣とおすすめワイン＆日本酒が楽しめるオイスターバー<br />
+                <a
+                  href="https://oysters-inc.jp/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <<公式サイトはこちら>> </a
+                ><br />
+                座席：<a
+                  href="images/座席.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  詳細はこちら </a
+                ><br />
+                <!--出品数：全13銘柄 / 参加者数：25名 -->
+              </div>
+              <div class="hero__panel-cta-row">
+                <div class="cta-column">
+                  <a
+                    href="./vote/index.html"
+                    target="_blank"
+                    rel="noopener"
+                    class="btn btn--primary"
+                  >
+                    投票サイトを開く
+                  </a>
+
+                  <p
+                    style="
+                      font-size: 13px;
+                      color: var(--text-muted);
+                      margin-top: 8px;
+                    "
+                  >
+                    ※ 投票は試飲会当日のみ有効です。
+                  </p>
+                </div>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================
+         latest（結果発表）_latest
+      ========================== -->
+      <section class="section section" id="latest">
+        <!-- Hero text -->
+        <div>
+          <div class="l-container">
+            <header class="section__header">
+              <div class="section__label">ANNOUNCEMENT OF RESULTS</div>
+              <h1 class="hero__title">
+                第<span id="latest-round">10</span>回 結果発表
+              </h1>
+            </header>
+
+            <div
+              id="latest-ranking"
+              class="ranking-grid"
+              aria-label="最新回 TOP3"
+            >
+              <p id="latest-status" class="latest-status">
+                最新の結果を読み込み中です…
+              </p>
+            </div>
+            <div class="ranking-sub">
+              <h2 class="ranking-sub__title">ボトルデザイン賞</h2>
+              <div
+                id="latest-design"
+                class="ranking-grid ranking-grid--design"
+              ></div>
+            </div>
+
+            <div
+              class="ranking-sub special-award"
+              id="special-award-block"
+              hidden
+            >
+              <h2 class="ranking-sub__title">特別賞</h2>
+              <div
+                id="latest-special"
+                class="ranking-grid ranking-grid--design"
+              ></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================
+         Quick Menu（ホームからの導線）_menu
+      ========================== -->
+      <section class="section section--alt" id="menu">
+        <div class="l-container">
+          <header class="section__header">
+            <div class="section__label">Menu</div>
+            <h2 class="section__title">メニュー・機能</h2>
+          </header>
+
+          <div class="quick-menu-grid">
+            <a href="#latest" class="quick-menu-card">
+              <div class="quick-menu-card__title">最新回の結果</div>
+              <div class="quick-menu-card__text">
+                総合ランキング、部門別ランキング、受賞コメントなど。
+              </div>
+              <div class="quick-menu-card__meta">Ranking / Award</div>
+            </a>
+
+            <a href="#vote" class="quick-menu-card">
+              <div class="quick-menu-card__title">投票ページ</div>
+              <div class="quick-menu-card__text">
+                試飲会当日に使うスコア入力・ボトルデザイン投票サイトへ。
+              </div>
+              <div class="quick-menu-card__meta">Voting System</div>
+            </a>
+
+            <a href="./sake-list/index.html" class="quick-menu-card">
+              <div class="quick-menu-card__title">出品酒一覧</div>
+              <div class="quick-menu-card__text">
+                出品された全銘柄を一覧表示。詳細ページへの導線もここから。
+              </div>
+              <div class="quick-menu-card__meta">Entry Sake</div>
+            </a>
+
+            <a href="#archive" class="quick-menu-card">
+              <div class="quick-menu-card__title">過去の結果アーカイブ</div>
+              <div class="quick-menu-card__text">
+                第1回〜第9回までの順位・出品酒一覧をまとめて閲覧できます。
+              </div>
+              <div class="quick-menu-card__meta">History / Archive</div>
+            </a>
+
+            <!-- ここから先は拡張用の空き枠 -->
+            <div class="quick-menu-card" style="display: none">
+              <div class="quick-menu-card__title">
+                蔵元・スポンサー紹介（拡張予定）
+              </div>
+              <div class="quick-menu-card__text">
+                協賛酒蔵やスポンサー情報を掲載するスペースとして拡張可能。
+              </div>
+              <div class="quick-menu-card__meta">Coming Soon</div>
+            </div>
+
+            <div class="quick-menu-card" style="display: none">
+              <div class="quick-menu-card__title">
+                参加者の声・コラム（拡張予定）
+              </div>
+              <div class="quick-menu-card__text">
+                noteやブログ記事と連携して、レビューやレポートを表示。
+              </div>
+              <div class="quick-menu-card__meta">Coming Soon</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================
+         投票ページへの導線（既存サイトへリンク）_vote
+      ========================== -->
+      <section class="section section" id="vote">
+        <div class="l-container">
+          <header class="section__header">
+            <div class="section__label">Vote</div>
+            <h2 class="section__title">投票ページ（当日用）</h2>
+          </header>
+          <p
+            style="
+              font-size: 13px;
+              color: var(--text-muted);
+              margin-bottom: 12px;
+            "
+          >
+            ※ 投票は試飲会当日のみ有効です。
+          </p>
+          <!-- ↓ここに本番の投票サイトURLを入れる -->
+          <a
+            href="./vote/index.html"
+            target="_blank"
+            rel="noopener"
+            class="btn btn--primary"
+          >
+            投票ページを開く
+          </a>
+        </div>
+      </section>
+
+      <!-- =========================
+         出品酒一覧（スプレッドシート連携予定）_sake-list
+      ========================== -->
+      <section class="section section--alt" id="sake-list">
+        <div class="l-container">
+          <header class="section__header">
+            <div class="section__label">Entry Sake</div>
+            <h2 class="section__title">出品酒一覧</h2>
+          </header>
+          <p
+            style="
+              font-size: 13px;
+              color: var(--text-muted);
+              margin-bottom: 12px;
+            "
+          >
+            出品された全銘柄を一覧表示。
+          </p>
+          <!-- ↓ここに本番の投票サイトURLを入れる -->
+          <a
+            href="./sake-list/index.html"
+            target="_blank"
+            rel="noopener"
+            class="btn btn--primary"
+          >
+            出品酒一覧を開く
+          </a>
+        </div>
+      </section>
+
+      <!-- =========================
+         過去の結果アーカイブ
+      ========================== -->
+      <section class="section section" id="archive">
+        <div class="l-container">
+          <header class="section__header">
+            <div class="section__label">Archive</div>
+            <h2 class="section__title">過去の結果</h2>
+          </header>
+
+          <div class="archive-list">
+            <article class="archive-item">
+              <a href="../sake-list/?round=10" class="archive-item__title">
+                第10回（2026年3月開催）
+              </a>
+              <div class="archive-item__meta">
+                優勝：花陽浴（はなあび）THE PREMIUM 純米大吟醸 山田錦40
+                おりがらみ生原酒 / 埼玉県<br />
+                出品数：13銘柄 <br />
+                ボトルデザイン賞：山に雲が ザアアザアア 純米大吟醸 / 高知県
+                <br />
+                特別賞：月桂冠 純米大吟醸 しぼりたて生原酒 / 京都府
+              </div>
+            </article>
+            <article class="archive-item">
+              <a href="../sake-list/?round=9" class="archive-item__title">
+                第9回（2025年11月開催）
+              </a>
+              <div class="archive-item__meta">
+                優勝：花陽浴（はなあび） THE PREMIUM / 埼玉県<br />
+                出品数：11銘柄 <br />
+                ボトルデザイン賞：小豆島の輝 / 香川県
+              </div>
+            </article>
+
+            <article class="archive-item">
+              <div class="archive-item__title">第8回（No Data）</div>
+              <!-- <div class="archive-item__meta">
+                総合優勝：□□ 吟醸／出品数：〇〇銘柄
+              </div> -->
+            </article>
+
+            <article class="archive-item">
+              <a href="../sake-list/?round=7" class="archive-item__title">
+                第7回（開催日不明）
+              </a>
+              <div class="archive-item__meta">
+                優勝：大嶺 2粒 火入れ / 山口県<br />
+                出品数：12銘柄 <br />
+                ボトルデザイン賞：御湖鶴 / 長野県
+              </div>
+            </article>
+
+            <article class="archive-item">
+              <div class="archive-item__title">第6回（No Data）</div>
+              <!-- <div class="archive-item__meta">
+                総合優勝：□□ 吟醸／出品数：〇〇銘柄
+              </div> -->
+            </article>
+
+            <article class="archive-item">
+              <a href="../sake-list/?round=5" class="archive-item__title">
+                第5回（開催日不明）
+              </a>
+              <div class="archive-item__meta">
+                優勝：（No Data）<br />
+                出品数：13銘柄 <br />
+                ボトルデザイン賞：（No Data）
+              </div>
+            </article>
+
+            <article class="archive-item">
+              <a href="../sake-list/?round=4" class="archive-item__title">
+                第4回（開催日不明）
+              </a>
+              <div class="archive-item__meta">
+                優勝：東洋美人 / 山口県<br />
+                出品数：7銘柄 <br />
+                ボトルデザイン賞：（No Data）
+              </div>
+            </article>
+
+            <article class="archive-item">
+              <div class="archive-item__title">第3回（No Data）</div>
+              <!-- <div class="archive-item__meta">
+                総合優勝：□□ 吟醸／出品数：〇〇銘柄
+              </div> -->
+            </article>
+
+            <article class="archive-item">
+              <div class="archive-item__title">第2回（No Data）</div>
+              <!-- <div class="archive-item__meta">
+                総合優勝：〇〇 純米大吟醸／出品数：〇〇銘柄
+              </div> -->
+            </article>
+
+            <article class="archive-item">
+              <div class="archive-item__title">第1回（No Data）</div>
+              <!-- <div class="archive-item__meta">
+                総合優勝：△△ 特別純米／出品数：〇〇銘柄
+              </div> -->
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================
+         お知らせ・次回開催情報
+    ========================== -->
+      <section class="section section--alt" id="news">
+        <div class="l-container">
+          <header class="section__header">
+            <div class="section__label">News / Info</div>
+            <h2 class="section__title">お知らせ・次回開催予定</h2>
+          </header>
+
+          <div class="news-list">
+            <article class="news-item">
+              <div class="news-item__meta">2026.09.29｜お知らせ</div>
+              <h3 class="news-item__title">
+                第11回の開催日程が決定しました （2026年9月5日）<br />
+                サイトを更新中です
+              </h3>
+            </article>
+
+            <article class="news-item">
+              <div class="news-item__meta">2026.05.06｜お知らせ</div>
+              <h3 class="news-item__title">
+                サイトを更新しました（第10回の結果）
+              </h3>
+            </article>
+
+            <article class="news-item">
+              <div class="news-item__meta">2026.02.04｜お知らせ</div>
+              <h3 class="news-item__title">
+                第10回の開催日程が決定しました （2026年3月5日）
+              </h3>
+            </article>
+
+            <article class="news-item">
+              <div class="news-item__meta">2025.12.01｜お知らせ</div>
+              <h3 class="news-item__title">第9回の結果公開を開始しました</h3>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- =========================
+       Footer
+    ========================== -->
+    <footer class="site-footer">
+      <div class="l-container">
+        <div class="site-footer__top">
+          <div>
+            <div class="site-footer__brand">
+              みんなで決めよう！本当に美味しいお酒はこれだ！
+            </div>
+            <div
+              style="font-size: 12px; color: var(--text-muted); margin-top: 4px"
+            >
+              半年に一度の日本酒試飲会。その記録と物語を残すためのポータルサイト。
+            </div>
+          </div>
+          <!-- 後、編集 -->
+          <div class="site-footer__links" style="display: none">
+            <a href="#">運営者情報</a>
+            <a href="#">お問い合わせ</a>
+            <a href="#">利用規約</a>
+            <a href="#">プライバシーポリシー</a>
+          </div>
+        </div>
+
+        <div class="site-footer__bottom">
+          © 2025 みんなで決めよう！ホントに美味しいお酒はこれだ！全国大会<br />
+          All rights reserved.
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
